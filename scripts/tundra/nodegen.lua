@@ -276,7 +276,8 @@ local function x_source_list(self, name, info, value, env, out_deps)
     source_files = value
   end
   local sources = resolve_sources(env, source_files, {}, self.Decl.SourceDir)
-  local source_exts = env:get_list(info.ExtensionKey)
+  local source_exts = nil
+  if info.ExtensionKey then source_exts = env:get_list(info.ExtensionKey) end
   local inputs, ideps = analyze_sources(env, resolve_pass(self.Decl.Pass), sources, source_exts)
   if ideps then
     util.append_table(out_deps, ideps)
@@ -680,10 +681,6 @@ function add_evaluator(name, meta_tbl, blueprint)
     local type_ = assert(val.Type)
     if not validators[type_] then
       errorf("unsupported blueprint type %q", type_)
-    end
-
-    if val.Type == "source_list" and not val.ExtensionKey then
-      errorf("%s: source_list must provide ExtensionKey", name)
     end
   end
 
