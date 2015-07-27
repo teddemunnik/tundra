@@ -239,14 +239,14 @@ local function make_project_data(units_raw, env, proj_extension, hints, ide_scri
 
     for src, _ in pairs(source_lut) do
       local norm_src = path.normalize(src)
-      if not grabbed_sources[norm_src] then
-        grabbed_sources[norm_src] = unit
+      --if not grabbed_sources[norm_src] then
+      --  grabbed_sources[norm_src] = unit
         local is_generated = generated_lut[src]
         proj.Sources[#proj.Sources+1] = {
           Path      = norm_src,
           Generated = is_generated,
         }
-      end
+     -- end
     end
   end
 
