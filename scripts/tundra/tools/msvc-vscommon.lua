@@ -199,7 +199,7 @@ function get_win10_sdk(sdk_version, vs_version, target_arch)
     ["include"] = {}
   }
 
-  result.bin = sdk_root .. "bin\\" .. post_win8_sdk[target_arch].bin
+  result.bin = sdk_root .. "bin\\" .. sdk_version .. "\\" .. post_win8_sdk[target_arch].bin
 
   local sdk_dir_base_include = sdk_root .. "include\\" .. sdk_version .. "\\"
   result.include[#result.include + 1] = sdk_dir_base_include .. "shared"
